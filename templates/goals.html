@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Scorers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+        <a href="/top_scorers">Top Scorers</a>
+    <a href="/top_assists">Top Assists</a>
+    <a href="/average_passes">Average Passes Completed</a>
+    <a href="/defensive_contributions">Top Defensive Contributions</a>
+    <a href="/plot_goals">Goals Bar Plot</a>
+    <div class="container">
+        <h1 class="mt-5">Goals Scored by Players</h1>
+        <img src="{{ plot_filename }}" alt="Goals Plot" class="img-fluid mt-3">
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+*.png  # Ignore saved plot images
+*.db
+
