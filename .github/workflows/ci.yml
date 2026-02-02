@@ -28,6 +28,6 @@ jobs:
 
       - name: Run tests
         run: |
-          cd football
-          pytest tests/
+          cd tests
+          pytest test_football.py
 
