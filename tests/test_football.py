@@ -1,5 +1,5 @@
 import pytest
-from football import app
+import football
 
 @pytest.fixture
 def client():
