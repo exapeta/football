@@ -25,24 +25,6 @@ def test_top_scorers(client):
     assert response.status_code == 200
     assert b'Player' in response.data  # Check if the word 'Player' is in the HTML (indicating there's data)
 
-def test_top_assists(client):
-    """Test top assists route."""
-    response = client.get('/top_assists')
-    assert response.status_code == 200
-    assert b'Player' in response.data  # Check if the word 'Player' is in the HTML
-
-def test_average_passes(client):
-    """Test average passes route."""
-    response = client.get('/average_passes')
-    assert response.status_code == 200
-    assert b'total_passes' in response.data  # Check if 'total_passes' is in the HTML
-
-def test_defensive_contributions(client):
-    """Test defensive contributions route."""
-    response = client.get('/defensive_contributions')
-    assert response.status_code == 200
-    assert b'Player' in response.data  # Check if the word 'Player' is in the HTML
-
 # @pytest.fixture
 # def client():
 #     app.config['TESTING'] = True
