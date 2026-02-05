@@ -12,19 +12,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv('AUTH0_SECRET')
+# app.secret_key = os.getenv('AUTH0_SECRET')
 
 # Configure session for Auth0
-app.config.update(
-    SESSION_COOKIE_SECURE=False,  # Set to True in production with HTTPS
-    SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SAMESITE='Lax',
-)
+# app.config.update(
+#     SESSION_COOKIE_SECURE=False,  # Set to True in production with HTTPS
+#     SESSION_COOKIE_HTTPONLY=True,
+#     SESSION_COOKIE_SAMESITE='Lax',
+# )
 
-@app.before_request
-def store_request_response():
-    """Make request/response available for Auth0 SDK"""
-    g.store_options = {"request": request}
+# @app.before_request
+# def store_request_response():
+#     """Make request/response available for Auth0 SDK"""
+#     g.store_options = {"request": request}
 
 # Load the T5 model from TensorFlow Hub (e.g., for summarization)
 # model = hub.load("https://tfhub.dev/google/tf2-preview/t5-base/summarization/1")
@@ -50,7 +50,8 @@ df = pd.DataFrame(data)
 async def homepage():
     # """Home page - shows login button or user profile"""
     # user = await auth0.get_user(g.store_options)
-    return render_template('homepage.html', user=user)
+    # return render_template('homepage.html', user=user)
+    return render_template('homepage.html')
 
 @app.route('/top_scorers', methods=['GET'])
 def top_scorers():
