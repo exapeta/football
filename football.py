@@ -48,8 +48,8 @@ df = pd.DataFrame(data)
 # Setup web pages
 @app.route('/')
 async def homepage():
-    """Home page - shows login button or user profile"""
-    user = await auth0.get_user(g.store_options)
+    # """Home page - shows login button or user profile"""
+    # user = await auth0.get_user(g.store_options)
     return render_template('homepage.html', user=user)
 
 @app.route('/top_scorers', methods=['GET'])
@@ -91,48 +91,50 @@ def plot_goals():
     
     return render_template('goals.html', plot_filename=plot_filename)
 
-@app.route('/generate', methods=['POST'])
-def generate_text():
-    user_input = request.json.get('input')
+# Future implementations to include Auth & AI.
+
+# @app.route('/generate', methods=['POST'])
+# def generate_text():
+#     user_input = request.json.get('input')
     
-    # Prepare the input for the TensorFlow model
-    input_text = "summarize: " + user_input
-    predictions = model(tf.convert_to_tensor([input_text]))
+#     # Prepare the input for the TensorFlow model
+#     input_text = "summarize: " + user_input
+#     predictions = model(tf.convert_to_tensor([input_text]))
 
-    # Process the output
-    generated_text = predictions.numpy()[0].decode('utf-8')
-    return jsonify({'output': generated_text})
+#     # Process the output
+#     generated_text = predictions.numpy()[0].decode('utf-8')
+#     return jsonify({'output': generated_text})
 
-@app.route('/login')
-async def login():
-    """Redirect to Auth0 login"""
-    authorization_url = await auth0.start_interactive_login({}, g.store_options)
-    return redirect(authorization_url)
+# @app.route('/login')
+# async def login():
+#     """Redirect to Auth0 login"""
+#     authorization_url = await auth0.start_interactive_login({}, g.store_options)
+#     return redirect(authorization_url)
 
-@app.route('/callback')
-async def callback():
-    """Handle Auth0 callback after login"""
-    try:
-        result = await auth0.complete_interactive_login(str(request.url), g.store_options)
-        return redirect(url_for('index'))
-    except Exception as e:
-        return f"Authentication error: {str(e)}", 400
+# @app.route('/callback')
+# async def callback():
+#     """Handle Auth0 callback after login"""
+#     try:
+#         result = await auth0.complete_interactive_login(str(request.url), g.store_options)
+#         return redirect(url_for('index'))
+#     except Exception as e:
+#         return f"Authentication error: {str(e)}", 400
 
-@app.route('/profile')
-async def profile():
-    """Protected route - shows user profile"""
-    user = await auth0.get_user(g.store_options)
+# @app.route('/profile')
+# async def profile():
+#     """Protected route - shows user profile"""
+#     user = await auth0.get_user(g.store_options)
     
-    if not user:
-        return redirect(url_for('login'))
+#     if not user:
+#         return redirect(url_for('login'))
     
-    return render_template('profile.html', user=user)
+#     return render_template('profile.html', user=user)
 
-@app.route('/logout')
-async def logout():
-    """Logout and redirect to Auth0 logout"""
-    logout_url = await auth0.logout(g.store_options)
-    return redirect(logout_url)
+# @app.route('/logout')
+# async def logout():
+#     """Logout and redirect to Auth0 logout"""
+#     logout_url = await auth0.logout(g.store_options)
+#     return redirect(logout_url)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
