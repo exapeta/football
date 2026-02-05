@@ -7,7 +7,7 @@ flask-cors
 pytest
 pytest-flask
 auth0-python
-auth0-server-python>=1.0.0b7
+auth0-server-python
 python-dotenv>=1.0.0
 authlib>=1.0
 requests>=2.27.1
