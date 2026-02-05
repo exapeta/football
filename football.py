@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from auth import auth0
+# from auth import auth0
 # import tensorflow as tf
 # import tensorflow_hub as hub
 from dotenv import load_dotenv
